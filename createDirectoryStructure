@@ -1,0 +1,32 @@
+# run by source createDirectoryStructure
+
+
+mkdir server
+cd server
+touch app.js
+cd ..
+
+mkdir db
+cd db
+touch index.js
+touch restaurant.schema.js
+touch meal.schema.
+cd ..
+
+#create client structure for jsx and distribution of js and index.html
+mkdir client
+cd client
+touch index.js
+
+mkdir components
+cd components
+touch displayRestaurant.jsx
+touch addRestrauntMeal.jsx
+cd ..
+
+mkdir dist
+cd dist
+touch index.html
+cd ..
+
+cd ..

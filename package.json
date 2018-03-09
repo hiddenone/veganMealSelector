@@ -1,0 +1,20 @@
+{
+  "name": "veganmealselector",
+  "version": "1.0.0",
+  "description": "Find meals that are vegan at a restaurant with various ingredients.                      Mern (MongoDB/Express/React/Node.js)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --inspect"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiddenone/veganMealSelector.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hiddenone/veganMealSelector/issues"
+  },
+  "homepage": "https://github.com/hiddenone/veganMealSelector#readme"
+}

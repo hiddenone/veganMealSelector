@@ -16,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/hiddenone/veganMealSelector/issues"
   },
-  "homepage": "https://github.com/hiddenone/veganMealSelector#readme"
+  "homepage": "https://github.com/hiddenone/veganMealSelector#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.9",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
 }

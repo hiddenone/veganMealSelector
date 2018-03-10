@@ -1,6 +1,6 @@
 // getting-started.js from mongo 5.09 documentation
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/VeganMeals');
 var Restaurant = require('./restaurant.schema.js');
 // We have a pending connection to the test database running on localhost. We now need to get notified if we connect successfully or if a connection error occurs:
 

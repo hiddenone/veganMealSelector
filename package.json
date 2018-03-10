@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --inspect"
+    "start": "nodemon --inspect server/app.js",
+    "build": "babel client --out-dir dist -s inline --presets=es2015,react -w",
+    "seedtestdb":"nodemon db/seed.js"
   },
   "repository": {
     "type": "git",

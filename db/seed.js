@@ -31,7 +31,7 @@ db.once('open', function() {
             {name:"McDonalds",meal:"salad",ingredients:["lettuce"]},
             {name:"Vege-grill",meal:"mushroom burgers",ingredients:["lettuce","mushrooms","bread"]},
             {name: "Hong Kong Charlies", meal:"pad thai", ingredients:["lettuce", "mushrooms", "rice"]},
-    {name: "Vegetarian House", meal:"Pho Noodle Soupt", ingredients:["lettuce", "mushrooms", "Pho","bamboo-shoots"],crumbs:["great Stuff for sure","more testing"],notinthemodel:["testing will not go into db"]}];
+    {name: "Vegetarian House", meal:"Pho Noodle Soupt", ingredients:["lettuce", "mushrooms", "Pho","bamboo-shoots"],crumbs:["IT CHANGED"],notinthemodel:["testing will not go into db"]}];
 
 // drops all restaurant documents
 Restaurant.remove({}, function(){

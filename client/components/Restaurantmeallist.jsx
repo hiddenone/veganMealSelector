@@ -8,18 +8,31 @@
 //   <ul>
 //     {
 //        (props)=>(<li>hi</li>)
-
-
 //     }
 //   </ul>
 // );
 
+class Retaurantlistentryitem extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+
+  render() {
+    return (
+      <li>
+        {this.props.item.name}
+      </li>
+    )
+  }
+}
+
+
 var Restaurantmeallist = (props) => (
   <ul>
-  {props.restaurants.map(function(r,i){
-    console.log(r,i);
-    return (<li>{r.name}</li>)
-  })}
+ {props.restaurants.map(restaurant =>
+      <Retaurantlistentryitem item={restaurant} key={restaurant.name}/>
+  )}
   </ul>
 );
 

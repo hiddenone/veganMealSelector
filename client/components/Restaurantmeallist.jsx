@@ -1,5 +1,6 @@
 var Restaurantmeallist=  () => (
   <ul>
-  <li>Yummy meal one two three</li>
+  <li>Yummy meal one</li>
+  <li>Yummy meal two</li>
   </ul>
 )

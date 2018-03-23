@@ -1,30 +1,59 @@
+
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      restaurants: [{name:"r1",key:"kr1"},{name:"r2",key:"kr2"}],
+      restaurants: [],
       currentrestaurant: null
     };
   }
 
   componentDidMount() {
- //   this.getAllrestaurants();
+    //////this.getAllRestaurants();
+    this.fetchRestaurantData();
   }
 
-  getAllrestaurants(query) {
-    // var options = {
-    //   key: this.props.API_KEY,
-    //   query: query
-    // };
-
-    this.props.getAllRestaurants(options, (restaurants) =>
-      this.setState({
-        restaurants: restaurants,
-        //currentrestaurant: restaurants[0]
+  getAllRestaurants() {
+     let that = this;
+     //var restaurants = this.props.getAllRestaurants();
+     this.props.fetchAllRestaurants(function(restaurants){
+         //console.log('restaurants>>>>>>>>>>>>>>>>');
+         that.setState({
+            restaurants: restaurants
       })
-    );
+     });
+    //  let that = this;
+    // this.props.fetchAllRestaurants(restaurants=>{
+    //   console.log("TESTING>>>>>>>>>", restaurants);
+    //   that.setState({retaurants: restaurants})
+    // })
+
+
+    // this.setState({
+    //   restaurants: restaurants
+    // })
   }
+//////////////////////////////////////////
+
+fetchRestaurantData(){
+  let that = this;
+  fetch('restaurants')
+  .then(response =>response.json()
+   )
+  .then(restaurants => {
+    console.log("STUFF FROM ZZZZZZZZZZZZZZZ fetchRestaurantData:",restaurants);
+    this.setState({restaurants:restaurants})
+  });
+}
+
+////////////////////////////////////////////
+
+
+
+
+
+
 
   // handlerestaurantListEntryTitleClick(restaurant) {
   //   this.setState({

@@ -6,12 +6,15 @@ class App extends React.Component {
     this.state = {
       restaurants: [],
       currentrestaurant: null,
+      currentmeal: null,
       restaurant: null,
       meal:null,
       navselect: 'all'
     };
 this.handleClickOnNav = this.handleClickOnNav.bind(this,["Add Restaurant","View"]);
 this.handleMealSubmit = this.handleMealSubmit.bind(this);
+this.handleOnChangeRestaurant = this.handleOnChangeRestaurant.bind(this);
+this.handleOnChangeMeal = this.handleOnChangeMeal.bind(this);
 
   }
   handleClickOnNav(validValues, e){
@@ -23,7 +26,14 @@ this.handleMealSubmit = this.handleMealSubmit.bind(this);
            that.setState({navselect:value});
         }
       })
-
+  }
+  handleOnChangeMeal(e){
+     console.log("MealCHANGE",e.target.value)
+     this.setState({currentmeal:e.target.value})
+  }
+  handleOnChangeRestaurant(e){
+     console.log("RestaurantCHANGE",e.target.value)
+     this.setState({currentrestaurant:e.target.value})
   }
 
 /////////////////
@@ -66,16 +76,19 @@ fetch(url, {
   })
 }).then(res => res.json())
 .catch(error => console.error('Error:', error))
-.then(response => console.log('Success:', response));
+.then(response => {console.log('Success:', response);
+   this.fetchRestaurantData();
+
+});
 }
 handleMealSubmit(e){
   e.preventDefault();
   const restaurantMealData = {
-    restaurant: this.state.restaurant,
-    meal: this.state.meal
+    name: this.state.currentrestaurant,
+    meal: this.state.currentmeal
   }
   console.log("DEBUG handleMealSubmit",restaurantMealData)
-  this.postRestaurantMeal({meal:"mealtest",restaurant:"restauranttest"});
+  this.postRestaurantMeal(restaurantMealData);
 }
 
 
@@ -85,10 +98,10 @@ handleMealSubmit(e){
     if(this.state.navselect==='View'){
       util1 = <Restaurantmeallist restaurants={this.state.restaurants}/>
     }else if(this.state.navselect==='Add Restaurant'){
-      util2 = <AddRestaurantMeal />
+      util2 = <AddRestaurantMeal restaurant={this.state.currentrestaurant}  meal={this.state.currentmeal} handleSubmit={this.handleMealSubmit} handleOnChangeRestaurant={this.handleOnChangeRestaurant} handleOnChangeMeal={this.handleOnChangeMeal}/>
     }else if(this.state.navselect==='all'){
       util1 = <Restaurantmeallist restaurants={this.state.restaurants}/>
-      util2 = <AddRestaurantMeal handleSubmit={this.handleMealSubmit}/>
+       util2 = <AddRestaurantMeal restaurant={this.state.currentrestaurant}  meal={this.state.currentmeal} handleSubmit={this.handleMealSubmit} handleOnChangeRestaurant={this.handleOnChangeRestaurant} handleOnChangeMeal={this.handleOnChangeMeal}/>
     }
     return (
       <div>
@@ -114,8 +127,8 @@ handleMealSubmit(e){
              handlerestaurantListEntryTitleClick={this.handlerestaurantListEntryTitleClick.bind(this)}
              restaurants={this.state.restaurants}
            /> */}
-            {util1}
             {util2}
+            {util1}
           </div>
         </div>
       </div>

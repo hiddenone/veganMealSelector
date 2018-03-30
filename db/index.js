@@ -14,12 +14,20 @@ db.once('open', function() {
 var  selectAllRestaurants =  function(){
     return Restaurant.find();
 }
-var  selectARestaurant =  function(restaurant){
+var  selectARestaurantMeal =  function(restaurant){
 
     return Restaurant.find({name: restaurant});
 }
+var saveRestaurantMeal =function(restaurants){
+  console.log("saveRestaurant->",restaurants);
+  Restaurant.insertMany([restaurants]).then(function(docs){
+     console.log("insertmany:",docs);
+  });
+}
+//saveRestaurant().then(docs=>console.log("saving Restaurants",docs))
 selectAllRestaurants().then(docs=>console.log("TESTING selectALL/all restaurants:",docs));
-selectARestaurant('Vege-grill').then(doc=>console.log("TESTING select a restaurant:",doc));
+selectARestaurantMeal('Vege-grill').then(doc=>console.log("TESTING select a restaurant meal:",doc));
 
 exports.selectAllRestaurants = selectAllRestaurants;
-exports.selectARestaurant = selectARestaurant;
+exports.selectARestaurantMeal = selectARestaurantMeal;
+exports.saveRestaurantMeal = saveRestaurantMeal;

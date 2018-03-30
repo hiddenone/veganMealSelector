@@ -1,7 +1,27 @@
 // TODO: Render the `App` component to the DOM
 
+var getRestaurantDummyData = function(){
+   return       [
+            {name:"McDonalds",meal:"salad",ingredients:["lettuce"]},
+            {name:"Vege-grill",meal:"mushroom burgers",ingredients:["lettuce","mushrooms","bread"]},
+            {name: "Hong Kong Charlies", meal:"pad thai", ingredients:["lettuce", "mushrooms", "rice"]},
+    {name: "Vegetarian House", meal:"Pho Noodle Soupt", ingredients:["lettuce", "mushrooms", "Pho","bamboo-shoots"],crumbs:["IT CHANGED"],notinthemodel:["testing will not go into db"]}];
+}
+
+var fetchRestaurantData = function(callback){
+  fetch('restaurants')
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(myJson) {
+    callback(myJson);
+    console.log("STUFF FROM fetchRestaurantData:",myJson);
+  });
+}
+
+
 ReactDOM.render(
-<App />,
+<App getAllRestaurants={getRestaurantDummyData} fetchAllRestaurants={fetchRestaurantData} />,
   document.getElementById('app')
 );
 

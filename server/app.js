@@ -21,5 +21,9 @@ app.get('/restaurant', function(req, res){
   db.selectARestaurant('Vege-grill').then(docs=>res.send(docs));
 });
 
+app.post('/restaurant/meal', function(req, res){
+  console.log(req.body);
+  res.send(req.body);
+});
 
 app.listen(3000);

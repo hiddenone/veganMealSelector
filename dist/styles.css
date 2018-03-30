@@ -1,0 +1,14 @@
+input, label {
+    display:block;
+}
+
+.group1 { float:left;margin-right:20px;  /*style="float:left;margin-right:20px;" */
+}
+
+.group2 {float:left; /*style="float:left;"*/ }
+
+.clearboth { clear:both; /*style="clear:both;"  */}
+.nav1 { float:left; margin-right:20px;  border: 5px solid springgreen;/*style="float:left;margin-right:20px;" */
+}
+
+.nav2 {float:left; border: 5px solid springgreen; /*style="float:left;"*/ }

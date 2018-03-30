@@ -11,7 +11,6 @@
 //     }
 //   </ul>
 // );
-
 class Retaurantlistentryitem extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +20,16 @@ class Retaurantlistentryitem extends React.Component {
   render() {
     return (
       <li>
-        {this.props.item.name}
+        <ul><li>{this.props.restaurant.name}</li>
+            <li>{this.props.restaurant.meal}</li>
+            <ul>{this.props.restaurant.ingredients.map(ingredient=>{
+              return (<li>
+                {ingredient}
+               </li>);
+            }
+              )}</ul>
+
+        </ul>
       </li>
     )
   }
@@ -29,11 +37,11 @@ class Retaurantlistentryitem extends React.Component {
 
 
 var Restaurantmeallist = (props) => (
-  <ul>
+  <ol>
  {props.restaurants.map(restaurant =>
-      <Retaurantlistentryitem item={restaurant} key={restaurant.name}/>
+      <Retaurantlistentryitem restaurant={restaurant} key={restaurant.name}/>
   )}
-  </ul>
+  </ol>
 );
 
 

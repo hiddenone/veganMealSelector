@@ -23,7 +23,12 @@ app.get('/restaurant', function(req, res){
 
 app.post('/restaurant/meal', function(req, res){
   console.log(req.body);
+  db.saveRestaurantMeal(req.body);
   res.send(req.body);
 });
-
+app.post('/restaurant/search', function(req, res){
+  console.log(req.body);
+  //db.saveRestaurantMeal(req.body);
+  db.searchRestaurantMeal(req.body).then(docs=>res.send(docs));
+});
 app.listen(3000);

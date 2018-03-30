@@ -16,7 +16,7 @@ var  selectAllRestaurants =  function(){
 }
 var  selectARestaurantMeal =  function(restaurant){
 
-    return Restaurant.find({name: restaurant});
+    return Restaurant.find(restaurant);
 }
 var saveRestaurantMeal =function(restaurants){
   console.log("saveRestaurant->",restaurants);
@@ -31,3 +31,4 @@ selectARestaurantMeal('Vege-grill').then(doc=>console.log("TESTING select a rest
 exports.selectAllRestaurants = selectAllRestaurants;
 exports.selectARestaurantMeal = selectARestaurantMeal;
 exports.saveRestaurantMeal = saveRestaurantMeal;
+exports.searchRestaurantMeal = selectARestaurantMeal;

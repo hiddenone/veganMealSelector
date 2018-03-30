@@ -39,7 +39,7 @@ class Retaurantlistentryitem extends React.Component {
 var Restaurantmeallist = (props) => (
   <ol>
  {props.restaurants.map(restaurant =>
-      <Retaurantlistentryitem restaurant={restaurant} key={restaurant.name}/>
+      <Retaurantlistentryitem restaurant={restaurant} key={restaurant._id}/>
   )}
   </ol>
 );

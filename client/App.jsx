@@ -7,6 +7,8 @@ class App extends React.Component {
       restaurants: [],
       currentrestaurant: null,
       currentmeal: null,
+      currentsearchrestaurant: null,
+      currentsearchmeal: null,
       restaurant: null,
       meal:null,
       navselect: 'all'
@@ -15,6 +17,9 @@ this.handleClickOnNav = this.handleClickOnNav.bind(this,["Add Restaurant","View"
 this.handleMealSubmit = this.handleMealSubmit.bind(this);
 this.handleOnChangeRestaurant = this.handleOnChangeRestaurant.bind(this);
 this.handleOnChangeMeal = this.handleOnChangeMeal.bind(this);
+this.handleOnChangeSearchRestaurant = this.handleOnChangeSearchRestaurant.bind(this);
+this.handleOnChangeSearchMeal = this.handleOnChangeSearchMeal.bind(this);
+this.handleSubmitSearchMeal = this.handleSubmitSearchMeal.bind(this);
 
   }
   handleClickOnNav(validValues, e){
@@ -35,6 +40,14 @@ this.handleOnChangeMeal = this.handleOnChangeMeal.bind(this);
      console.log("RestaurantCHANGE",e.target.value)
      this.setState({currentrestaurant:e.target.value})
   }
+   handleOnChangeSearchMeal(e){
+     console.log("MealCHANGE",e.target.value)
+     this.setState({currentsearchmeal:e.target.value})
+  }
+  handleOnChangeSearchRestaurant(e){
+     console.log("RestaurantCHANGE",e.target.value)
+     this.setState({currentsearchrestaurant:e.target.value})
+  }
 
 /////////////////
   componentDidMount() {
@@ -42,16 +55,16 @@ this.handleOnChangeMeal = this.handleOnChangeMeal.bind(this);
     this.fetchRestaurantData();
   }
 
-  getAllRestaurants() {
-     let that = this;
-     //var restaurants = this.props.getAllRestaurants();
-     this.props.fetchAllRestaurants(function(restaurants){
-         //console.log('restaurants>>>>>>>>>>>>>>>>');
-         that.setState({
-            restaurants: restaurants
-      })
-     });
-  }
+  // getAllRestaurants() {
+  //    let that = this;
+  //    //var restaurants = this.props.getAllRestaurants();
+  //    this.props.fetchAllRestaurants(function(restaurants){
+  //        //console.log('restaurants>>>>>>>>>>>>>>>>');
+  //        that.setState({
+  //           restaurants: restaurants
+  //     })
+  //    });
+  // }
 //////////////////////////////////////////
 
 fetchRestaurantData(){
@@ -90,17 +103,45 @@ handleMealSubmit(e){
   console.log("DEBUG handleMealSubmit",restaurantMealData)
   this.postRestaurantMeal(restaurantMealData);
 }
+postRestaurantSearchMeal(data){
+  var url = 'restaurant/search/';
+let that = this;
+fetch(url, {
+  method: 'POST', // or 'PUT'
+  body: JSON.stringify(data),
+  headers: new Headers({
+    'Content-Type': 'application/json'
+  })
+}).then(res => res.json())
+.catch(error => console.error('Error:', error))
+.then(response => {console.log('Success!!!!:', response);
+   //this.fetchRestaurantData();
+   that.setState({restaurants:response})
+});
+}
+handleSubmitSearchMeal(e){
+  e.preventDefault();
+  const restaurantMealData = {
+    name: this.state.currentsearchrestaurant,
+    meal: this.state.currentsearchmeal
+  }
+  console.log("DEBUG handleMealSubmit",restaurantMealData)
+  this.postRestaurantSearchMeal(restaurantMealData);
+}
 
 
   render() {
     var util1 = null;
     var util2 = null;
+    var util3 = null;
     if(this.state.navselect==='View'){
       util1 = <Restaurantmeallist restaurants={this.state.restaurants}/>
     }else if(this.state.navselect==='Add Restaurant'){
       util2 = <AddRestaurantMeal restaurant={this.state.currentrestaurant}  meal={this.state.currentmeal} handleSubmit={this.handleMealSubmit} handleOnChangeRestaurant={this.handleOnChangeRestaurant} handleOnChangeMeal={this.handleOnChangeMeal}/>
+      util3 = <SearchForRestaurantMeal restaurant={this.state.currentrestaurant}  meal={this.state.currentmeal} handleSubmitSearchMeal={this.handleSubmitSearchMeal} handleOnChangeSearchRestaurant={this.handleOnChangeSearchRestaurant} handleOnChangeSearchMeal={this.handleOnChangeSearchMeal}/>
     }else if(this.state.navselect==='all'){
       util1 = <Restaurantmeallist restaurants={this.state.restaurants}/>
+      util3 = <SearchForRestaurantMeal restaurant={this.state.currentrestaurant}  meal={this.state.currentmeal} handleSubmitSearchMeal={this.handleSubmitSearchMeal} handleOnChangeSearchRestaurant={this.handleOnChangeSearchRestaurant} handleOnChangeSearchMeal={this.handleOnChangeSearchMeal}/>
        util2 = <AddRestaurantMeal restaurant={this.state.currentrestaurant}  meal={this.state.currentmeal} handleSubmit={this.handleMealSubmit} handleOnChangeRestaurant={this.handleOnChangeRestaurant} handleOnChangeMeal={this.handleOnChangeMeal}/>
     }
     return (
@@ -128,6 +169,7 @@ handleMealSubmit(e){
              restaurants={this.state.restaurants}
            /> */}
             {util2}
+            {util3}
             {util1}
           </div>
         </div>

@@ -1,6 +1,9 @@
 // getting-started.js from mongo 5.09 documentation
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/VeganMeals');
+var DBNAME = 'mongodb://whynot:heydood@ds229609.mlab.com:29609/veganjustasyoulikeit';
+
+//mongoose.connect('mongodb://localhost/VeganMeals');
+mongoose.connect(DBNAME);
 var Restaurant = require('./restaurant.schema.js');
 // We have a pending connection to the test database running on localhost. We now need to get notified if we connect successfully or if a connection error occurs:
 
@@ -25,7 +28,7 @@ var saveRestaurantMeal =function(restaurants){
   });
 }
 //saveRestaurant().then(docs=>console.log("saving Restaurants",docs))
-selectAllRestaurants().then(docs=>console.log("TESTING selectALL/all restaurants:",docs));
+selectAllRestaurants().then(docs=>console.log("TESTING iiiiiii selectALL/all restaurants:",docs));
 selectARestaurantMeal('Vege-grill').then(doc=>console.log("TESTING select a restaurant meal:",doc));
 
 exports.selectAllRestaurants = selectAllRestaurants;

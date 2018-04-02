@@ -31,4 +31,8 @@ app.post('/restaurant/search', function(req, res){
   //db.saveRestaurantMeal(req.body);
   db.searchRestaurantMeal(req.body).then(docs=>res.send(docs));
 });
-app.listen(3000);
+var port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", function() {
+console.log("Listening on Port ",port);
+});
+//app.listen(3000);
